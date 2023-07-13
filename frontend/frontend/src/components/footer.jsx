@@ -7,7 +7,7 @@ export default function Footer(){
         <footer style={{marginTop:"35%"}}>
             <Container>
                 <Row>
-                    <Col className="text-center" py-3>
+                    <Col className="text-center" style={{py:3}}>
                         <p>E-commerce @copy;{currentDate}</p>
                     </Col>
                 </Row>
