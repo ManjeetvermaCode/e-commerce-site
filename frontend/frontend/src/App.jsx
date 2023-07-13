@@ -1,14 +1,15 @@
 import Header from "./components/header"
 import Footer from "./components/footer"
+import HomeScreen from "./screen"
 import {Container} from 'react-bootstrap'
 function App() {
 
   return (
     <>
     <Header/>
-    <main className="py-3">
+    <main style={{py:3}}>
       <Container>
-        <h1>E Commerce site</h1>
+        <HomeScreen/>
       </Container>
     </main>
     <Footer/>
