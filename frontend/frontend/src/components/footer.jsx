@@ -8,7 +8,7 @@ export default function Footer(){
             <Container>
                 <Row>
                     <Col className="text-center" style={{py:3}}>
-                        <p>E-commerce @copy;{currentDate}</p>
+                        <p>@ E-commerce {currentDate}</p>
                     </Col>
                 </Row>
             </Container>

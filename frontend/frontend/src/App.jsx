@@ -1,7 +1,7 @@
 import Header from "./components/header"
 import Footer from "./components/footer"
-import HomeScreen from "./screen"
 import {Container} from 'react-bootstrap'
+import { Outlet } from "react-router-dom"
 function App() {
 
   return (
@@ -9,7 +9,8 @@ function App() {
     <Header/>
     <main style={{py:3}}>
       <Container>
-        <HomeScreen/>
+        <Outlet/>
+         {/*//It acts as a placeholder where the content of the matched child route will be rendered.  */}
       </Container>
     </main>
     <Footer/>
