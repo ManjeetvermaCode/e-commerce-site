@@ -1,21 +1,30 @@
 import {Nav,Navbar,Container} from 'react-bootstrap';
 import {FaShoppingCart,FaUser} from 'react-icons/fa'
+import {LinkContainer} from 'react-router-bootstrap'//allow us to have client side links within nav-link.
 
 function Header() {
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
         <Container>
-          <Navbar.Brand href='/'>E-commerce site</Navbar.Brand>
+          <LinkContainer to='/home'>
+            <Navbar.Brand>E-commerce site</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav'/>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
-            <Nav.Link href='/cart'>
-              <FaShoppingCart/>Cart
-            </Nav.Link>
-            <Nav.Link href='/login'>
+              <LinkContainer to='/cart'>
+                  <Nav.Link>
+                    <FaShoppingCart/>Cart
+                  </Nav.Link>
+              </LinkContainer>
+            
+            <LinkContainer to='/login'>
+            <Nav.Link>
               <FaUser/>Sing In
             </Nav.Link>
+            </LinkContainer>
+            
             </Nav>
           </Navbar.Collapse>
         </Container>
