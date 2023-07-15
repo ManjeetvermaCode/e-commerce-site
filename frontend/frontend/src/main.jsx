@@ -8,7 +8,9 @@ import {
   createBrowserRouter,
   createRoutesFromElements
 } from 'react-router-dom'
+
 import HomeScreen from './home-screen.jsx'
+import ProductScreen from './product-screen.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css'
@@ -16,8 +18,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
-      <Route index={true} path='/' element={<HomeScreen/>}/>//index 'true' states that only HomeScreen should render when needed.
-
+      <Route index={true} path='/' element={<HomeScreen/>}/>
+      {/*index 'true' sets the default or index route */}
+      <Route  path='/product/:id' element={<ProductScreen/>}/>
     </Route>
   )
 )
