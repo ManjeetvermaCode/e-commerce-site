@@ -1,6 +1,11 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import express from "express";//by setting "type":"module" we can use esModule syntax
+
+
+const port=process.env.PORT || 5000
+
 const app=express()
-const port=5000
 import products from './products.js'
 
 app.get('/',(req,res)=>{
