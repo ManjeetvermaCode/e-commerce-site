@@ -1,28 +1,39 @@
 import {useParams} from 'react-router-dom'
-import products from './products'
-import {Link} from 'react-router-dom'
-import {Row,Col,Image,ListGroup,Card,Button, ListGroupItem} from 'react-bootstrap'
-import Rating from './rating'
+import { useState,useEffect } from 'react'
+import {Row,Col,Image,ListGroup,Card,Button} from 'react-bootstrap'
+import Rating from '../src/rating'
+import axios from 'axios'
 
 export default function ProductScreen(){
+    const [product,setProduct]=useState({})
     const {id}=useParams()
-    const product=products.find(p=>p._id===id)
-    
 
+    useEffect(()=>{
+        const fetchData=async()=>{
+            const {data}=await axios.get(`http://localhost:3000/products/${id}`)
+            console.log(data.name)
+            setProduct(data)
+        }
+        fetchData()
+    },[id])//whenever id  will change, then only useEffect will get called
+    
+{/*fluid makes the image responsive */}
+{/*flush - removes outer border and spacing */}
     return (
         <>
-           <Button className="btn, btn-dark my-3" to="/">
+           <Button className="btn, btn-dark my-3" to="/" disabled>
                 Go Back
            </Button>
 
             <Row>
                 <Col md={5}>
                     <Image src={product.image} alt={product.name} fluid/>
-                    {/*fluid makes the image responsive */}
+                    
+                    
                 </Col>
                 <Col md={4}>
                 <ListGroup variant='flush'>
-                    {/*flush - removes outer border and spacing */}
+                    
                     <ListGroup.Item>
                         <h3>{product.name}</h3>
                     </ListGroup.Item>

@@ -9,8 +9,8 @@ import {
   createRoutesFromElements
 } from 'react-router-dom'
 
-import HomeScreen from './home-screen.jsx'
-import ProductScreen from './product-screen.jsx'
+import HomeScreen from '../screens/home-screen.jsx'
+import ProductScreen from '../screens/product-screen.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css'

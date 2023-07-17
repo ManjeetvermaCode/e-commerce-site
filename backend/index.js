@@ -1,12 +1,13 @@
 import dotenv from 'dotenv'
 dotenv.config()
 import express from "express";//by setting "type":"module" we can use esModule syntax
-
-
+import cors from 'cors'
 const port=process.env.PORT || 5000
 
 const app=express()
 import products from './products.js'
+
+app.use(cors())
 
 app.get('/',(req,res)=>{
     res.send('this is home page')//ultimately this will load our react application.
