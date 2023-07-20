@@ -1,9 +1,9 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 const Schema=mongoose.Schema;
 
-const reviewSchema=Schema({
+const reviewSchema=new Schema({
     user:{
-        type:mongoose.Schema.type.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"User"//Refers to User Schema
     },
@@ -26,7 +26,7 @@ const reviewSchema=Schema({
 
 const ProductSchema=new Schema({
     user:{
-        type:mongoose.Schema.type.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"User"//Refers to User Schema
     },
