@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-const Schema=mongoose.Schema;
-
-const reviewSchema=new Schema({
+const reviewSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
@@ -24,7 +22,7 @@ const reviewSchema=new Schema({
     timestamps:true
 })
 
-const ProductSchema=new Schema({
+const ProductSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
@@ -75,5 +73,5 @@ const ProductSchema=new Schema({
 },{
     timestamps:true//he timestamps: true option in Mongoose schema is defined separately to automatically manage the createdAt and updatedAt fields, providing the timestamp of when a document is created and last updated. 
 })
-const product = mongoose.model("Product",ProductSchema)
-export default product
+const Product = mongoose.model("Product",ProductSchema)
+export default Product
