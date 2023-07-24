@@ -1,7 +1,7 @@
-import { Card } from "react-bootstrap"
+import { Card,Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
 // as we are using client side rendering, while using 'a' tags will result in reloading of the page, therfore we'll use 'Link'.
-import Rating from "../rating"
+import Rating from "./rating"
 export default function Product({product}){
     return (
         <>

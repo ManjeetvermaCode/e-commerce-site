@@ -15,6 +15,9 @@ import ProductScreen from '../screens/product-screen.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css'
 
+import store from '../store.js'
+import  {Provider}  from 'react-redux'
+
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
@@ -27,6 +30,8 @@ const router=createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}> {/*integrate Redux with React. It enables the application to access the Redux store from any component in the component tree without the need to pass it explicitly as props.  */}
+      <RouterProvider router={router}/>
+    </Provider>
   </React.StrictMode>,
 )

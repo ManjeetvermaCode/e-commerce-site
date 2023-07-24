@@ -11,7 +11,6 @@ export default function HomeScreen(){
         const fetchProduct=async()=>{
             try {
                 const response = await axios.get("http://localhost:3000/products");//we may want to replace the url, when uploading the site to the internet
-                
                 setProducts(response.data);  
             } catch (error) {
                 console.error(error)
