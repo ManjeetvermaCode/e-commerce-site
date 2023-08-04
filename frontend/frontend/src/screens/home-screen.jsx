@@ -32,7 +32,7 @@ export default function HomeScreen(){
 
                    products.map(p=>
                       <Col sm={12} md={6} lg={4} xl={2} >
-                         <Product product={p}/>
+                         <Product key={p._id} product={p}/>
                         </Col>
                 
                     )
