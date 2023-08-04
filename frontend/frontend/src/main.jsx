@@ -16,7 +16,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css'
 
 import store from './store.js'
-console.log(store.getState())
 import  {Provider}  from 'react-redux'
 
 const router=createBrowserRouter(

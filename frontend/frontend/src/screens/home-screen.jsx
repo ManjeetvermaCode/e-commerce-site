@@ -1,6 +1,8 @@
 import Product from '../components/product-card.jsx'
 import {Row,Col} from 'react-bootstrap'
 import  {useGetProductsQuery}  from '../slices/productApiSlice'
+import Loader from '../components/loader.jsx'
+import Messages from '../components/messages.jsx'
 
 export default function HomeScreen(){
 
@@ -8,11 +10,14 @@ export default function HomeScreen(){
     // console.log(isError)
 // console.log(useGetProductsQuery().currentData)    
     return (
+
+
         <>
 
-        {isLoading?(<h1>Loading...</h1>) : isError?(<div>error.error</div>):(<>
+
+        {isLoading?(<Loader/>) : isError?(<Messages variant='danger' sx={{mt:3}}>{isError?.data?.message || isError.error}</Messages>):(<>
             <h1>this is heaing</h1>
-        
+
         <Row>
                 {
                     
