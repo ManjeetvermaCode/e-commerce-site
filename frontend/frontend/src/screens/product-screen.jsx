@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import {Row,Col,Image,ListGroup,Card,Button} from 'react-bootstrap'
-import Rating from '../src/components/rating'
+import Rating from '../components/rating'
 import axios from 'axios'
 
 export default function ProductScreen(){
@@ -10,7 +10,7 @@ export default function ProductScreen(){
 
     useEffect(()=>{
         const fetchData=async()=>{
-            const {data}=await axios.get(`http://localhost:3000/products/${id}`)
+            const {data}=await axios.get(`http://localhost:5000/products/${id}`)
             setProduct(data)
         }
         fetchData()
@@ -26,7 +26,7 @@ export default function ProductScreen(){
 
             <Row>
                 <Col md={5}>
-                    <Image src={product.image} alt={product.name} fluid/>
+                    <Image src={`/src/assets${product.image}`} alt={product.name} fluid/>
                     
                     
                 </Col>

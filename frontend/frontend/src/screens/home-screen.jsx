@@ -1,4 +1,4 @@
-import Product from '../src/components/product-card.jsx'
+import Product from '../components/product-card.jsx'
 import axios from 'axios'
 import { useEffect,useState } from 'react'
 
@@ -10,7 +10,7 @@ export default function HomeScreen(){
     useEffect(()=>{
         const fetchProduct=async()=>{
             try {
-                const response = await axios.get("http://localhost:3000/products");//we may want to replace the url, when uploading the site to the internet
+                const response = await axios.get("http://localhost:5000/products");//we may want to replace the url, when uploading the site to the internet
                 setProducts(response.data);  
             } catch (error) {
                 console.error(error)
