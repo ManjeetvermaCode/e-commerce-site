@@ -1,21 +1,13 @@
 import {useParams} from 'react-router-dom'
-import { useState,useEffect } from 'react'
 import {Row,Col,Image,ListGroup,Card,Button} from 'react-bootstrap'
 import Rating from '../components/rating'
-import axios from 'axios'
+import Loader from '../components/loader'
+import Messages from '../components/messages'
+import { useGetProdutsDetailsQuery } from '../slices/productApiSlice'
 
 export default function ProductScreen(){
-    const [product,setProduct]=useState({})
-    const {id}=useParams()
-
-    useEffect(()=>{
-        const fetchData=async()=>{
-            const {data}=await axios.get(`http://localhost:5000/products/${id}`)
-            setProduct(data)
-        }
-        fetchData()
-    },[id])//whenever id  will change, then only useEffect will get called
-    
+    const {id:Id}=useParams()
+   const {data:product,isLoading,isError}=useGetProdutsDetailsQuery(Id)
 {/*fluid makes the image responsive */}
 {/*flush - removes outer border and spacing */}
     return (
@@ -24,6 +16,7 @@ export default function ProductScreen(){
                 Go Back
            </Button>
 
+        {isLoading?(<Loader/>):isError?(<Messages variant='danger'>{isError?.data?.message || isError.error}</Messages>):<>
             <Row>
                 <Col md={5}>
                     <Image src={`/src/assets${product.image}`} alt={product.name} fluid/>
@@ -78,6 +71,9 @@ export default function ProductScreen(){
                     </Card>
                 </Col>
             </Row>
+</>}
+
+            
 
         </>
     )
