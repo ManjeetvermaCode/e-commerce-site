@@ -1,8 +1,11 @@
-import {Nav,Navbar,Container} from 'react-bootstrap';
+import {Badge,Nav,Navbar,Container} from 'react-bootstrap';
 import {FaShoppingCart,FaUser} from 'react-icons/fa'
 import {LinkContainer} from 'react-router-bootstrap'//allow us to have client side links within nav-link.
+import { useSelector } from 'react-redux';
 
 function Header() {
+  const {cartItems}=useSelector((state)=>state.cart)
+  console.log(cartItems)
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
@@ -15,7 +18,16 @@ function Header() {
             <Nav className='ms-auto'>
               <LinkContainer to='/cart'>
                   <Nav.Link>
+                  
                     <FaShoppingCart/>Cart
+                    {
+                      cartItems.length>0 && (
+                        <Badge pill bg='info' style={{marginLeft:'5px'}}>
+                          {cartItems.reduce((a,c)=>a+c.qty,0)}
+                          
+                        </Badge>
+                      )
+                    }
                   </Nav.Link>
               </LinkContainer>
             
