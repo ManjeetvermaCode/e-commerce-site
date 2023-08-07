@@ -8,14 +8,15 @@ export default function HomeScreen(){
 
     const {currentData:data,isLoading,isError} = useGetProductsQuery()
     // console.log(isError)
-// console.log(useGetProductsQuery().currentData)    
+// console.log(useGetProductsQuery().currentData)   
     return (
 
 
         <>
 
 
-        {isLoading?(<Loader/>) : isError?(<Messages variant='danger' sx={{mt:3}}>{isError?.data?.message || isError.error}</Messages>):(<>
+        {isLoading?(<Loader/>) : isError?(<Messages variant='danger' sx={{mt:3}}>{'something went wrong'}</Messages>
+):(<>
             <h1>this is heaing</h1>
 
         <Row>

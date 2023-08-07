@@ -1,8 +1,10 @@
 import { configureStore, } from '@reduxjs/toolkit'
 import apiSlice  from './slices/apiSlice';
+import cartSliceReducer from './slices/cartSlice';
 const store= configureStore({
-    reducer: {
-        [apiSlice.reducerPath]:apiSlice.reducer//The expression inside the square brackets [ ] is evaluated, and its result is used as the key for the new object property. 'apiSlice' is a reducer provided by createApi.  
+    reducer: {//this is a global reducer
+        [apiSlice.reducerPath]:apiSlice.reducer,//The expression inside the square brackets [ ] is evaluated, and its result is used as the key for the new object property. 'apiSlice' is a reducer provided by createApi.  
+        cart:cartSliceReducer
       },
       
 
