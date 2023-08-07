@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {Row,Col,Image,ListGroup,Card,Button} from 'react-bootstrap'
 import Rating from '../components/rating'
 import Loader from '../components/loader'
@@ -12,9 +12,9 @@ export default function ProductScreen(){
 {/*flush - removes outer border and spacing */}
     return (
         <>
-           <Button className="btn, btn-dark my-3" to="/" disabled>
+           <Link className="btn, btn-dark my-3" to="/" >
                 Go Back
-           </Button>
+           </Link>
 
         {isLoading?(<Loader/>):isError?(<Messages variant='danger'>{isError?.data?.message || isError.error}</Messages>):<>
             <Row>
