@@ -17,7 +17,6 @@ export default function HomeScreen(){
 
         {isLoading?(<Loader/>) : isError?(<Messages variant='danger' sx={{mt:3}}>{'something went wrong'}</Messages>
 ):(<>
-            <h1>this is heaing</h1>
 
         <Row>
                 {
