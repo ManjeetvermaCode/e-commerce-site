@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 import connectDB from './config/db.js'
 import express from "express"//by setting "type":"module" we can use esModule syntax
 import cors from 'cors'
@@ -20,6 +21,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/products',productRoutes)
+app.use('/user',userRoutes)
 
 app.use(notFound)//if no route matches, this will get called and next() will forward it to next middleware below
 app.use(errorHandler)//if another url of castError error of mongose
