@@ -16,6 +16,7 @@ export default function ProductScreen(){
 
     const dispatch=useDispatch()
     const navigate=useNavigate()
+    
    const addToCartHandler=()=>{
         dispatch(addToCarts({...product,qty}))
         navigate('/cart')
