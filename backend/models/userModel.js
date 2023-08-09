@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from 'bcrypt'
 
 const Schema=mongoose.Schema
 
@@ -17,7 +18,7 @@ const userSchema=new Schema({
         required:true,
 
     },
-    iaAdmin:{
+    isAdmin:{
         type:Boolean,
         default:false,
         required:true,
@@ -25,6 +26,11 @@ const userSchema=new Schema({
 },{
     timestamps:true
 })
+
+userSchema.methods.comparePassword=async(password)=>{
+    return await bcrypt.compare(password,this.password)
+}
+
 const User=mongoose.model('User',userSchema)
 export default User;
 
