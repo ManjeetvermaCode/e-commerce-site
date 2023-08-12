@@ -12,8 +12,7 @@ connectDB()//initializing the MONGODB instance.
 const port=process.env.PORT || 5000
 app.use(cors())
 
-//BODY PARSING MIDDLEWARE
-
+//BODY PARSING MIDDLEWARE. 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
