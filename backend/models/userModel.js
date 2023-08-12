@@ -27,10 +27,11 @@ const userSchema=new Schema({
     timestamps:true
 })
 
-userSchema.methods.comparePassword=async(password)=>{
-    return await bcrypt.compare(password,this.password)
+userSchema.methods.comparePassword=async(password)=>{//method is used for adding method to the schema
+    return await bcrypt.compare(password,password)
 }
 
 const User=mongoose.model('User',userSchema)
+
 export default User;
 
