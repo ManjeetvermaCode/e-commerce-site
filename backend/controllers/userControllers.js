@@ -50,9 +50,13 @@ const registerUser=asyncHandler(async(req,res)=>[
 // @desc logout user & clear token
 // @route POST /users/login
 // @access Private
-const logoutUser=asyncHandler(async(req,res)=>[
-    res.send('logout')
-])
+const logoutUser=asyncHandler(async(req,res)=>{
+    res.cookie('jwt','',{//setting token to empty string 
+        httpOnly:true,
+        expiresIn:new Date(0)
+    })
+   res.status(200).json('logged out successfully')
+})
 
 // @desc Get user profile
 // @route GET /users/profile
