@@ -1,8 +1,8 @@
 import asyncHandler from '../middlewares/asyncHandler.js'
 import User from '../models/userModel.js'
+import bcrypt from 'bcrypt'
 
-import Jwt from 'jsonwebtoken'
-
+import createToken from '../utils/createToken.js'
 
 // @desc Auth user & get token
 // @route POST /user/login
@@ -13,19 +13,9 @@ const authUser=asyncHandler(async(req,res)=>{
     
     const user=await User.findOne({email})
     if(user && user.comparePassword(password)){
-  
+    
+        createToken(res,user._id)
 
-    const token=Jwt.sign({userId:user.id},process.env.JWT_SECRET,{
-        expiresIn:'7d'
-    })//.sign in method is used for creating token which takes 3 parameters,payload, secred and expiresIn object
-
-    //set token as http-only cookie
-    res.cookie('jwt',token,{//jwt is a cookie name
-        httpOnly:true,// can only be accessed by the server, not by JavaScript running in the browser.
-        secure:false,//true when https i.e in production
-        sameSite:'strict',//prevent certain attacks
-        maxAge:30*24*60*60*1000
-    })
 
         res.json({
             _id:user._id,
@@ -43,9 +33,33 @@ const authUser=asyncHandler(async(req,res)=>{
 // @desc Register User
 // @route POST /users
 // @access Public
-const registerUser=asyncHandler(async(req,res)=>[
-    res.send('register user')
-])
+const registerUser=asyncHandler(async(req,res)=>{
+    const {email,name,password}=req.body
+    const userExist= await User.findOne({email})
+
+    if(userExist){
+        res.status(400)
+        throw new Error('Invalid Credentials')
+    }
+    const user=await User.create({email,name,password})
+
+    if(user){
+        createToken(res,user._id)
+        res.status(201).json(
+            {
+                _id:user._id,
+                name:user.name,
+                email:user.email,
+                isAdmin:user.isAdmin,
+            }
+        )
+    }
+    else{
+        res.status(401)
+        throw new Error('User not registered')
+    }
+
+})
 
 // @desc logout user & clear token
 // @route POST /users/login
