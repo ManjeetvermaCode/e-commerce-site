@@ -3,6 +3,7 @@ import User from '../models/userModel.js'
 
 import Jwt from 'jsonwebtoken'
 
+
 // @desc Auth user & get token
 // @route POST /user/login
 // @access Public
