@@ -23,10 +23,10 @@ import User from '../models/userModel.js'
     }
 )
 
-//admin middleware
+// admin middleware
 
 const Admin=(req,res,next)=>{
-    if(req.user && req.user.isAdmin===true){
+    if(req.user && req.user.isAdmin){
         next()
     }
     else{

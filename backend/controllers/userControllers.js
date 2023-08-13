@@ -1,5 +1,6 @@
 import asyncHandler from '../middlewares/asyncHandler.js'
 import User from '../models/userModel.js'
+import bcrypt from 'bcrypt'
 
 import createToken from '../utils/createToken.js'
 
@@ -40,7 +41,6 @@ const registerUser=asyncHandler(async(req,res)=>{
         res.status(400)
         throw new Error('Invalid Credentials')
     }
-
     const user=await User.create({email,name,password})
 
     if(user){
