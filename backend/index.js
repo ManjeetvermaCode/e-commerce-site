@@ -5,6 +5,7 @@ import connectDB from './config/db.js'
 import express from "express"//by setting "type":"module" we can use esModule syntax
 import cors from 'cors'
 import {notFound,errorHandler} from './middlewares/errorMiddleware.js'
+import cookieParser from 'cookie-parser'
 
 const app=express()
 dotenv.config()
@@ -15,6 +16,9 @@ app.use(cors())
 //BODY PARSING MIDDLEWARE. 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
+//cookieParser
+app.use(cookieParser())
 
 
 app.get('/',(req,res)=>{
