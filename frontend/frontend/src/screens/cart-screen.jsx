@@ -11,7 +11,7 @@ export default function CartScreen(){
     const dispatch=useDispatch()
 
     const cart=useSelector((state)=>state.cart)
-    const {cartItems,totalPrice} =cart
+    const {cartItems} =cart
 
     //handlers
 

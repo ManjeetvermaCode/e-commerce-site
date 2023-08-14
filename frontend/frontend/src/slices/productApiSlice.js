@@ -1,9 +1,8 @@
 import { PRODUCT_URL } from "../constants";
-console.log(PRODUCT_URL)
 import apiSlice from "./apiSlice";
 export const productApiSlice=apiSlice.injectEndpoints({//injecting endpoin into rootslice.
-    endpoints:(builder)=>({
-        getProducts:builder.query({//getProduts is the action name and value is reducer function or action function
+    endpoints:(builder)=>({//endpoints-This is an object where you define your API endpoints and actions. builder object provided by createApi to configure your endpoints and actions.
+        getProducts:builder.query({//getProduts is the action name and value is reducer function or action function. builder.query allows query-based action.
             query:()=>(
                 {
                     url:PRODUCT_URL,
