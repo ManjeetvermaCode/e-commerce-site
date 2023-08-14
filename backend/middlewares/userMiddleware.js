@@ -6,9 +6,10 @@ import User from '../models/userModel.js'
         let token=req.cookies.jwt//reads the Jwt from cookie
         if(token){
             try {
-            const decoded=jwt.verify(token,process.env.JWT_SECRET)//this will return userId, as we had stored previously
-            req.user=await User.findById(decoded.userId).select('-password')//-password means to exclude the password from the document. req.user will provide access to user everywhere
-            next()
+                const decoded=jwt.verify(token,process.env.JWT_SECRET)//this will return userId, as we had stored previously
+                req.user=await User.findById(decoded.userId).select('-password')//-password means to exclude the password from the document. req.user will provide access to user everywhere
+                
+                next()
             } catch (error) {
                 console.log(error)
                 res.status(401)
@@ -17,8 +18,8 @@ import User from '../models/userModel.js'
     
         }
         else{
-            res.status(401)
-            throw new Error('token not found')
+                res.status(401)
+                throw new Error('token not found')
         }
     }
 )

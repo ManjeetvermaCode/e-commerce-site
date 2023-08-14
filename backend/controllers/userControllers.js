@@ -1,6 +1,5 @@
 import asyncHandler from '../middlewares/asyncHandler.js'
 import User from '../models/userModel.js'
-import bcrypt from 'bcrypt'
 
 import createToken from '../utils/createToken.js'
 
@@ -12,12 +11,12 @@ const authUser=asyncHandler(async(req,res)=>{
     const {email,password}=req.body
     
     const user=await User.findOne({email})
-    if(user && user.comparePassword(password)){
+    if(user &&await user.comparePassword(password)){
     
         createToken(res,user._id)
 
 
-        res.json({
+        res.status(200).json({
             _id:user._id,
             name:user.name,
             email:user.email,
@@ -25,7 +24,7 @@ const authUser=asyncHandler(async(req,res)=>{
         })
     }
     else{
-        res.status(403).json('cannot find the user')
+        res.status(403).json('Incorrect EmailId or Password')
     }
  
 })
@@ -75,16 +74,48 @@ const logoutUser=asyncHandler(async(req,res)=>{
 // @desc Get user profile
 // @route GET /users/profile
 // @access Private
-const getUserProfile=asyncHandler(async(req,res)=>[
-    res.send('get user profile')
-])
+const getUserProfile=asyncHandler(async(req,res)=>{
+   const newUser=await User.findById(req.user._id)
+   if(newUser){
+    res.status(200).json({
+        _id:newUser._id,
+        name:newUser.name,
+        email:newUser.email,
+        isAdmin:newUser.isAdmin,
+    })
+   }
+   else{
+    res.status(404).json('Invalid User')
+   }
+})
 
 // @desc update user profile
 // @route PUT /users/profile
 // @access Private
-const updateUserProfile=asyncHandler(async(req,res)=>[
-    res.send('updateUserProfile')
-])
+const updateUserProfile=asyncHandler(async(req,res)=>{
+    const newUser= await User.findById(req.user._id)
+    
+    if(newUser){
+        newUser.name =req.body.name || newUser.name
+        newUser.email=req.body.email ||newUser.email
+
+        if(req.body.password){
+            newUser.password=req.body.password//since the passward is being modifing our comparePassword in userModel.js will encrypt the passward before storing.
+        }
+
+        const updateUser=await newUser.save()
+
+        res.status(200).json({
+            _id:updateUser._id,
+            name:updateUser.name,
+            email:updateUser.email,
+            isAdmin:updateUser.isAdmin
+        })
+    }
+    else{
+        res.status(403).json('you profile is not updated')
+    }
+})
 
 // @desc Get Users
 // @route GET /users
