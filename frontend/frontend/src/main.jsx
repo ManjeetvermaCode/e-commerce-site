@@ -12,6 +12,7 @@ import {
 import HomeScreen from './screens/home-screen.jsx'
 import ProductScreen from './screens/product-screen.jsx'
 import CartScreen from './screens/cart-screen.jsx'
+import LoginScreen from './screens/login-screen.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css'
@@ -26,6 +27,8 @@ const router=createBrowserRouter(
       {/*index 'true' sets the default or index route */}
       <Route  path='/product/:id' element={<ProductScreen/>}/>
       <Route path='/cart' element={<CartScreen/>}/>
+      <Route path='/login' element={<LoginScreen/>}/>
+
     </Route>
   )
 )
