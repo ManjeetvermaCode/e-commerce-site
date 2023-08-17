@@ -1,10 +1,16 @@
-import {Badge,Nav,Navbar,Container} from 'react-bootstrap';
+import {Badge,Nav,Navbar,Container, NavDropdown} from 'react-bootstrap';
 import {FaShoppingCart,FaUser} from 'react-icons/fa'
 import {LinkContainer} from 'react-router-bootstrap'//allow us to have client side links within nav-link.
 import { useSelector } from 'react-redux';
 
 function Header() {
   const {cartItems}=useSelector((state)=>state.cart)
+  const {userInfo}=useSelector((state)=>state.auth)
+
+  const logoutHandler=()=>{
+    console.log('logout')
+  }
+
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
@@ -29,12 +35,21 @@ function Header() {
                     }
                   </Nav.Link>
               </LinkContainer>
+            {userInfo?(
+              <NavDropdown title={userInfo.res.name} id='username'>
+                <LinkContainer to='/profile'>
+                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                </LinkContainer>
+                <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            ):(
+              <LinkContainer to='/login'>
+              <Nav.Link>
+                <FaUser/>Sing In
+              </Nav.Link>
+              </LinkContainer>
+            )}
             
-            <LinkContainer to='/login'>
-            <Nav.Link>
-              <FaUser/>Sing In
-            </Nav.Link>
-            </LinkContainer>
             
             </Nav>
           </Navbar.Collapse>
