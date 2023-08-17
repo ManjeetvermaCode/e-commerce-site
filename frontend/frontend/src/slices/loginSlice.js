@@ -5,7 +5,7 @@ export const userApiSlice=apiSlice.injectEndpoints({//injecting endpoin into roo
         login:builder.mutation({//used to make changes to data on the server (like creating or updating)
             query:(data)=>(
                 {
-                    url:USER_URL/auth,
+                    url:USER_URL,
                     method:'post',
                     body:data
                     
