@@ -1,4 +1,4 @@
-import { USER_URL_LOGIN,USER_URL_LOGOUT } from "../constants";
+import { USER_URL_LOGIN,USER_URL_LOGOUT,USER_URL_REGISTER } from "../constants";
 import apiSlice from "./apiSlice";
 export const userApiSlice=apiSlice.injectEndpoints({//injecting endpoin into rootslice.
     endpoints:(builder)=>({
@@ -12,10 +12,17 @@ export const userApiSlice=apiSlice.injectEndpoints({//injecting endpoin into roo
                 }
             ),
         }),
+        register:builder.mutation({
+            query:(data)=>({
+                url:USER_URL_REGISTER,
+                method:'post',
+                body:data
+            })
+        }),
         logout:builder.mutation({
             query:()=>({
                 url:USER_URL_LOGOUT,
-                method:'post'
+                method:'POST'
             })
         })
          
@@ -23,4 +30,4 @@ export const userApiSlice=apiSlice.injectEndpoints({//injecting endpoin into roo
    
 })
 
-export const {useLoginMutation,useLogoutMutation}=userApiSlice
+export const {useLoginMutation,useLogoutMutation,useRegisterMutation}=userApiSlice

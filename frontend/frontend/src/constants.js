@@ -3,6 +3,8 @@ export const BASE_URL=process.env.NODE_ENV==='development'?'http://localhost:500
 export const PRODUCT_URL='/products'
 export const USER_URL_LOGIN='/user/login'
 export const USER_URL_LOGOUT='/user/logout'
+export const USER_URL_REGISTER='/user'
+
 
 export const ORDERS_URL='/orders'
 export const PAYPAL_URL='/config/paypal'
