@@ -2,13 +2,29 @@ import {Badge,Nav,Navbar,Container, NavDropdown} from 'react-bootstrap';
 import {FaShoppingCart,FaUser} from 'react-icons/fa'
 import {LinkContainer} from 'react-router-bootstrap'//allow us to have client side links within nav-link.
 import { useSelector } from 'react-redux';
+import { logout } from '../slices/authSlice';
+import { useLogoutMutation } from '../slices/loginSlice';
+import { useDispatch, } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const {cartItems}=useSelector((state)=>state.cart)
   const {userInfo}=useSelector((state)=>state.auth)
 
-  const logoutHandler=()=>{
-    console.log('logout')
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+
+  const [logoutApiCall]=useLogoutMutation()//we can name it whatever we want
+
+  const logoutHandler=async()=>{
+    try {
+      console.log('handler clicked')
+      await logoutApiCall().unwrap()
+      dispatch(logout())
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

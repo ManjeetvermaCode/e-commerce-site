@@ -10,10 +10,14 @@ const AuthSlice=createSlice({
         setCredentials:(state,action)=>{
             state.userInfo=action.payload,//state.xyz is used for storing data in store
             localStorage.setItem('userInfo',JSON.stringify(action.payload))//same data in localstorage in in redux store.
+        },
+        logout:(state,action)=>{
+            state.userInfo=null,
+            localStorage.removeItem('userInfo')
         }
     }
 })
 
-export  const {setCredentials}=AuthSlice.actions
+export  const {setCredentials,logout}=AuthSlice.actions
 
 export default AuthSlice.reducer//only .reducer is valid
