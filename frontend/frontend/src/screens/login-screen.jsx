@@ -16,7 +16,7 @@ export default function LoginScreen() {
     const dispatch=useDispatch()
     const navigate=useNavigate()
 
-    const [login,{isLoading}]=useLoginMutation()//login is a function
+    const [login,{isLoading}]=useLoginMutation()//it return an array, The first element, login, is a function that you can call to initiate the mutation.
 
     const {userInfo}=useSelector((state)=>state.auth)//retriveing userId field for auth state
 
@@ -39,10 +39,7 @@ export default function LoginScreen() {
             console.log('it worked')
             
         } catch (err) {
-            console.log('data not send')
-            console.log(err)
-             toast.error(err.error|| err?.data?.message)
-            
+            toast.error(err.data)            
         }
     }
     return(
