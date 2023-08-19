@@ -83,7 +83,7 @@ export default function CartScreen(){
                          {/* ${totalPrice} //we use not this becouse if the cart is empty then the price is less than 100 so tax 15% will be reflect on the page */}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Button type='button' variant='dark' to='/checkout' className='btn-block' disabled={cartItems.length===0} onClick={()=>checkoutHandler()}>
+                            <Button type='button' variant='dark' className='btn-block' disabled={cartItems.length===0} onClick={checkoutHandler}>
                                 Proceed to checkout
                             </Button>
                         </ListGroup.Item>
