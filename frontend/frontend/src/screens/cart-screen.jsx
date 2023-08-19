@@ -22,7 +22,7 @@ export default function CartScreen(){
         dispatch(removeFromCart(id))
     }
     const checkoutHandler=()=>{
-        navigate('/login?redirect=/shipping')//indicating that once the user logs in, they should be taken to the shipping page.
+        navigate('/shipping')//indicating that once the user logs in, they should be taken to the shipping page.
     }
 
     return (

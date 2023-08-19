@@ -9,6 +9,8 @@ import {
   createRoutesFromElements
 } from 'react-router-dom'
 
+import PrivateRoute from './components/privateRoute.jsx'
+
 import HomeScreen from './screens/home-screen.jsx'
 import ProductScreen from './screens/product-screen.jsx'
 import CartScreen from './screens/cart-screen.jsx'
@@ -31,8 +33,10 @@ const router=createBrowserRouter(
       <Route path='/cart' element={<CartScreen/>}/>
       <Route path='/login' element={<LoginScreen/>}/>
       <Route path='/register' element={<RegisterScreen/>}/>
-      <Route path='/shipping' element={<ShippingScreen/>}/>
-
+      
+      <Route path='' element={<PrivateRoute/>}>
+        <Route path='/shipping' element={<ShippingScreen/>}/>
+      </Route>
     </Route>
   )
 )
