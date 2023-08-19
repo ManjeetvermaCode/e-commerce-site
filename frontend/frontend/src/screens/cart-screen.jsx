@@ -22,7 +22,7 @@ export default function CartScreen(){
         dispatch(removeFromCart(id))
     }
     const checkoutHandler=()=>{
-        navigate('/login?redirect=/shipping')//indicating that once the user logs in, they should be taken to the shipping page.
+        navigate('/shipping')//indicating that once the user logs in, they should be taken to the shipping page.
     }
 
     return (
@@ -83,7 +83,7 @@ export default function CartScreen(){
                          {/* ${totalPrice} //we use not this becouse if the cart is empty then the price is less than 100 so tax 15% will be reflect on the page */}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Button type='button' variant='dark' to='/checkout' className='btn-block' disabled={cartItems.length===0} onClick={()=>checkoutHandler()}>
+                            <Button type='button' variant='dark' className='btn-block' disabled={cartItems.length===0} onClick={checkoutHandler}>
                                 Proceed to checkout
                             </Button>
                         </ListGroup.Item>
