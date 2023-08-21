@@ -17,6 +17,7 @@ import CartScreen from './screens/cart-screen.jsx'
 import LoginScreen from './screens/login-screen.jsx'
 import RegisterScreen from './screens/register-screen.jsx'
 import ShippingScreen from './screens/shipping-screen.jsx'
+import PaymentScreen from './screens/payment-screen.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './index.css'
@@ -36,6 +37,7 @@ const router=createBrowserRouter(
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/shipping' element={<ShippingScreen/>}/>
+        <Route path='/payment' element={<PaymentScreen/>}/>
       </Route>
     </Route>
   )

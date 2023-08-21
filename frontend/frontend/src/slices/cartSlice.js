@@ -28,9 +28,13 @@ const cartSlice=createSlice({
         saveAddress:(state,action)=>{
             state.shippingAddress=action.payload
             return upadateCart(state) 
+        },
+        savePaymentInfo:(state,action)=>{
+            state.paymentInfo=action.payload
+            return upadateCart(state)
         }
     }
 })
-export const {addToCarts,removeFromCart,saveAddress}=cartSlice.actions
+export const {addToCarts,removeFromCart,saveAddress,savePaymentInfo}=cartSlice.actions
 
 export default cartSlice.reducer//exported this to store for setting global reducer
