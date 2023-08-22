@@ -15,7 +15,7 @@ export default function Stage({step1,step2,step3,step4}) {
         </Nav.Item>
         <Nav.Item>
             {step2?(
-                <LinkContainer to='/shippin'>
+                <LinkContainer to='/shipping'>
                     <Nav.Link style={{fontSize:'4rem'}}>Shipping</Nav.Link>
                 </LinkContainer>
             ):(

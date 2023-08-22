@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { Col,Container,Form,Button } from "react-bootstrap";
+import { Col,Form,Button } from "react-bootstrap";
 import FormContainer from '../components/FormContainer'
 import CurrentStage from '../components/currentStage'
 import { savePaymentInfo } from "../slices/cartSlice";
@@ -41,7 +41,7 @@ export default function PaymentScreen() {
               <Form.Check
                 type='radio'
                 className='my=2'
-                lable='Paypal or Credit Card'
+                label='Paypal or Credit Card'
                 id='paypal'
                 name='paymentMethod'
                 value='Paypal'
