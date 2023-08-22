@@ -3,7 +3,7 @@ import {FaShoppingCart,FaUser} from 'react-icons/fa'
 import {LinkContainer} from 'react-router-bootstrap'//allow us to have client side links within nav-link.
 import { useSelector } from 'react-redux';
 import { logout } from '../slices/authSlice';
-import { useLogoutMutation } from '../slices/loginSlice';
+import { useLogoutMutation } from '../slices/loginApiSlice';
 import { useDispatch, } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
