@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { Col,Container,Form,Button } from "react-bootstrap";
 import FormContainer from '../components/FormContainer'
-import currentStage from '../components/currentStage'
+import CurrentStage from '../components/currentStage'
 import { savePaymentInfo } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,7 @@ export default function PaymentScreen() {
 
     return(
         <FormContainer>
-            <currentStage step1 step2 step3/>
+            <CurrentStage step1 step2 step3/>
             <h1>Payment Method</h1>
 
 
