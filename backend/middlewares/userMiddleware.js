@@ -8,7 +8,6 @@ import User from '../models/userModel.js'
             try {
                 const decoded=jwt.verify(token,process.env.JWT_SECRET)//this will return userId, as we had stored previously
                 req.user=await User.findById(decoded.userId).select('-password')//-password means to exclude the password from the document. req.user will provide access to user everywhere
-                
                 next()
             } catch (error) {
                 console.log(error)
@@ -23,6 +22,8 @@ import User from '../models/userModel.js'
         }
     }
 )
+
+
 
 // admin middleware
 
