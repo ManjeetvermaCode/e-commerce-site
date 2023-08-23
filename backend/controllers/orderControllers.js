@@ -12,7 +12,8 @@ const addOrderItems=asyncHandler(async(req,res)=>{
         itemsPrice,
         taxPrice,
         shippingPrice,
-        totalPrice
+        totalPrice,
+        paymentMethod
 
     }=req.body
 
@@ -22,7 +23,7 @@ const addOrderItems=asyncHandler(async(req,res)=>{
     }
     else{
         const orders=new Orders({
-            orderItems:orderItems.map((x)=({//returning an object
+            orderItems:orderItems.map(x=>({   //returning an object
                 ...x,
                 product:x._id,
                 _id:undefined
@@ -36,8 +37,8 @@ const addOrderItems=asyncHandler(async(req,res)=>{
             totalPrice,
         })
         const createdOrder=await orders.save()
-        res.status(201).json(createdOrder)
 
+       
     }
 })
 
