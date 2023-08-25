@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { Col,Form,Button } from "react-bootstrap";
 import FormContainer from '../components/FormContainer'
 import CurrentStage from '../components/currentStage'
-import { savePaymentInfo } from "../slices/cartSlice";
+import { savePaymentMethod } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function PaymentScreen() {
@@ -23,7 +23,7 @@ export default function PaymentScreen() {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        dispatch(savePaymentInfo(paymentMethod))
+        dispatch(savePaymentMethod(paymentMethod))
         navigate('/placeorder')
     }
 

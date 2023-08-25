@@ -1,7 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { upadateCart } from "../utils/cartUtils";
-const initialState=localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):{cartItems:[],shippingAddress:{},paymethodMethod:'paypal'}//this not only sets the initial state to null, it also assign the previously added items to the state, even if we refresh the page.
+const initialState=localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):{cartItems:[],shippingAddress:{},paymentMethod:'paypal'}//this not only sets the initial state to null, it also assign the previously added items to the state, even if we refresh the page.
 
 
 const cartSlice=createSlice({
@@ -29,16 +29,18 @@ const cartSlice=createSlice({
             state.shippingAddress=action.payload
             return upadateCart(state) 
         },
-        savePaymentInfo:(state,action)=>{
+        savePaymentMethod:(state,action)=>{
             state.paymentInfo=action.payload
             return upadateCart(state)
         },
         clearCartItems:(state,action)=>{
+
             state.cartItems=[]
+            console.log(state.cartItems)
             return upadateCart(state)
         }
     }
 })
-export const {addToCarts,removeFromCart,saveAddress,savePaymentInfo,clearCartItems}=cartSlice.actions
+export const {addToCarts,removeFromCart,saveAddress,savePaymentMethod,clearCartItems}=cartSlice.actions
 
 export default cartSlice.reducer//exported this to store for setting global reducer

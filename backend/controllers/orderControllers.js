@@ -1,5 +1,4 @@
 import asyncHandler from '../middlewares/asyncHandler.js'
-import Order from '../models/orderModel.js'
 import Orders from '../models/orderModel.js'
 
 //@desc create new order
@@ -17,7 +16,7 @@ const addOrderItems=asyncHandler(async(req,res)=>{
 
     }=req.body
 
-    if(orderItems && orderItems.lenght===0){
+    if(orderItems && orderItems.length===0){
         res.status(401)
         throw new Error('No item in the cart')
     }
