@@ -15,7 +15,7 @@ export default function PlaceOrderScreen() {
     const navigate=useNavigate()
     const dispatch=useDispatch()
 
-    const [CreateOrder,{isLoading,isError}]=useCreateOrderMutation();
+    const [createOrder,{isLoading,isError}]=useCreateOrderMutation();
     const cart=useSelector((state)=>state.cart)
     console.log(cart)
 
@@ -30,16 +30,15 @@ export default function PlaceOrderScreen() {
 
     const placeOrderHandler=async()=>{
         try {
-                const res=await CreateOrder({
-                    orderItems:cart.cartItems,
-                    shippingAddress:cart.shippingAddress,
-                    itemsPrice:cart.itemsPrice,
-                    taxPrice:cart.taxes,
-                    shippingPrice:cart.shippingPrice,
-                    totalPrice:cart.totalPrice,
-                    paymentMethod:cart.paymentInfo,
-                }).unwrap()
-                // console.log(res)
+            const res=await CreateOrder({
+                orderItems:cart.cartItems,
+                shippingAddress:cart.shippingAddress,
+                itemsPrice:cart.itemsPrice,
+                taxPrice:cart.taxes,
+                shippingPrice:cart.shippingPrice,
+                totalPrice:cart.totalPrice,
+                paymentMethod:cart.paymethodMethod
+            }).unwrap()
             dispatch(clearCartItems())
             navigate(`/orders/`)
         } catch (error) {
@@ -130,7 +129,7 @@ export default function PlaceOrderScreen() {
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                {isError && <Messages>{isError.data?.message?isError.data?.message:isError.message}</Messages>}
+                                {isError && <Messages>{isError.data}</Messages>}
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Button 

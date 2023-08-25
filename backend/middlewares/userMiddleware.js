@@ -4,6 +4,7 @@ import User from '../models/userModel.js'
 
  const protect=asyncHandler(async(req,res,next)=>{
         let token=req.cookies.jwt//reads the Jwt from cookie
+        console.log(token)
         if(token){
             try {
                 const decoded=jwt.verify(token,process.env.JWT_SECRET)//this will return userId, as we had stored previously
