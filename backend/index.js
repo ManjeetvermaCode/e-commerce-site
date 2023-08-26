@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 
-import cors from 'cors'
 
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
@@ -18,11 +17,9 @@ const app=express()
 dotenv.config()
 connectDB()//initializing the MONGODB instance.
 const port=process.env.PORT || 5000
-<<<<<<< HEAD
-=======
 
-app.use(cors())
->>>>>>> dabc080683da31ca3d8a29aeef1807aa2fe5c848
+
+
 
 //BODY PARSING MIDDLEWARE. 
 app.use(express.json())

@@ -17,7 +17,6 @@ export default function PlaceOrderScreen() {
 
     const [createOrder,{isLoading,isError}]=useCreateOrderMutation();
     const cart=useSelector((state)=>state.cart)
-    console.log(cart)
 
     useEffect(()=>{
         if(!cart.shippingAddress.address){
