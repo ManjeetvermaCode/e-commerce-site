@@ -1,11 +1,11 @@
 import asyncHandler from '../middlewares/asyncHandler.js'
-import Order from '../models/orderModel.js'
 import Orders from '../models/orderModel.js'
 
 //@desc create new order
 //@route POST/orders
 //@access Private
 const addOrderItems=asyncHandler(async(req,res)=>{
+  console.log('request is comming')
     const {
         orderItems,
         shippingAddress,
@@ -16,32 +16,31 @@ const addOrderItems=asyncHandler(async(req,res)=>{
         paymentMethod
 
     }=req.body
-    console.log(req.user)
-    console.log(shippingAddress)
+    
 
-    if(orderItems && orderItems.lenght===0){
+    if(orderItems && orderItems.length===0){
         res.status(401)
         throw new Error('No item in the cart')
     }
     else{
-        // const orders=new Orders({
-        //     orderItems:orderItems.map((x)=>({   //returning an object
-        //         ...x,
-        //         product_id:x._id,
-        //         _id:undefined
-        //     })),//inserting an object id to each item of the items.
-        //     user:req.user._id,//comming from createtoken.js
-        //     shippingAddress,
-        //     paymentMethod,
-        //     itemsPrice,
-        //     taxPrice,
-        //     shippingPrice,
-        //     totalPrice,
-        // })
-        const address=new Orders({shippingAddress})
-        const createdOrder=await address.save()
+        const orders=new Orders({
+            orderItems:orderItems.map((x)=>({   //returning an object
+                ...x,
+                product_id:x._id,
+                _id:undefined
+            })),//inserting an object id to each item of the items.
+            user:req.user._id,//comming from createtoken.js
+            shippingAddress,
+            paymentMethod,
+            itemsPrice,
+            taxPrice,
+            shippingPrice,
+            totalPrice,
+        })
+        const createdOrder=await orders.save()
         console.log(createdOrder)
-       
+        res.status(200).json(createdOrder);
+
     }
     
 })
@@ -58,7 +57,7 @@ const getMyOrders=asyncHandler(async(req,res)=>{
 //@route GET/orders/:ID
 //@access private
 const getOrderById=asyncHandler(async(req,res)=>{
-    const order=await Order.findById(req.params.id).populate('user','name email')
+    const order=await Orders.findById(req.params.id).populate('user','name email')
 
     if(order){
         res.status(201).json(order)

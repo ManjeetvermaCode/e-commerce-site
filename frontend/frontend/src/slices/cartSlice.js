@@ -1,7 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { upadateCart } from "../utils/cartUtils";
-const initialState=localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):{cartItems:[],shippingAddress:{},paymethodMethod:'paypal'}//this not only sets the initial state to null, it also assign the previously added items to the state, even if we refresh the page.
+const initialState=localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):{cartItems:[],shippingAddress:{},paymentMethod:'paypal'}//this not only sets the initial state to null, it also assign the previously added items to the state, even if we refresh the page.
 
 
 const cartSlice=createSlice({
