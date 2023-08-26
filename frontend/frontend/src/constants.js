@@ -1,5 +1,6 @@
 
-export const BASE_URL=""
+
+export const BASE_URL=''
 export const PRODUCT_URL='/api/products'
 export const USER_URL_LOGIN='/api/user/login'
 export const USER_URL_LOGOUT='/api/user/logout'

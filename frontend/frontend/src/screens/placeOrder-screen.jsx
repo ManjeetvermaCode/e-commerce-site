@@ -9,7 +9,7 @@ import {toast} from 'react-toastify'
 import Messages from '../components/messages'
 import Loader from '../components/loader'
 import {useCreateOrderMutation} from '../slices/orderApiSlice'
-import { clearCartItems } from "../slices/cartSlice"
+import { clearCartItems } from "../slices/cartSlice.js"
 
 export default function PlaceOrderScreen() {
     const navigate=useNavigate()
@@ -29,17 +29,17 @@ export default function PlaceOrderScreen() {
 
     const placeOrderHandler=async()=>{
         try {
-            const res=await createOrder({
+            const res=await CreateOrder({
                 orderItems:cart.cartItems,
                 shippingAddress:cart.shippingAddress,
                 itemsPrice:cart.itemsPrice,
                 taxPrice:cart.taxes,
                 shippingPrice:cart.shippingPrice,
                 totalPrice:cart.totalPrice,
-                paymentMethod:cart.paymentInfo
+                paymentMethod:cart.paymethodMethod
             }).unwrap()
             dispatch(clearCartItems())
-            navigate(`/orders/${res._id}/`)
+            navigate(`/orders/`)
         } catch (error) {
             toast.error(error)
         }
@@ -69,7 +69,7 @@ export default function PlaceOrderScreen() {
                             {cart.paymentInfo}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            {cart.cartItems.lenth===0?(
+                            {cart.cartItems.length===0?(
                                 <Messages>Your Cart is empty</Messages>
                             ):(
                                 <ListGroup>
@@ -135,7 +135,7 @@ export default function PlaceOrderScreen() {
                                     type='Button'
                                     onClick={placeOrderHandler}
                                     className="btn-block"
-                                    disabled={cart.cartItems.length===0}
+                                    // disabled={cart.cartItems.length===0}
                                 >Place Order</Button>
                             </ListGroup.Item>
                             {isLoading && <Loader/>}

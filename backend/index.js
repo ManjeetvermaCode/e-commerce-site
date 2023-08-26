@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 
-// import cors from 'cors'
 
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
@@ -12,12 +11,16 @@ import express from "express"//by setting "type":"module" we can use esModule sy
 import {notFound,errorHandler} from './middlewares/errorMiddleware.js'
 import cookieParser from 'cookie-parser'
 
+
+
 const app=express()
 dotenv.config()
 connectDB()//initializing the MONGODB instance.
 const port=process.env.PORT || 5000
 
-// app.use(cors())
+
+
+
 //BODY PARSING MIDDLEWARE. 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
